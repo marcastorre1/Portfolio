@@ -4,9 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>pitelicik — Создание сайтов</title>
+<title>pitelicik. — Создание сайтов</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -18,38 +22,76 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #07070b;
+    background: #050509;
     color: white;
+    font-family: "Manrope", sans-serif;
     overflow-x: hidden;
 }
-
-/* ===== ФОНОВОЕ СВЕЧЕНИЕ ===== */
 
 body::before {
     content: "";
     position: fixed;
-    width: 500px;
-    height: 500px;
-    background: #6d35ff;
-    filter: blur(180px);
-    opacity: .16;
-    top: -220px;
-    left: -150px;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(123,74,255,.12), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(77,50,180,.10), transparent 30%);
+    pointer-events: none;
     z-index: -2;
 }
 
-body::after {
-    content: "";
+/* ===== СВЕТЛЯЧКИ ===== */
+
+.fireflies {
     position: fixed;
-    width: 450px;
-    height: 450px;
-    background: #ff2d78;
-    filter: blur(180px);
-    opacity: .10;
-    right: -180px;
-    bottom: -180px;
-    z-index: -2;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.firefly {
+    position: absolute;
+    border-radius: 50%;
+    background: #c6a8ff;
+
+    box-shadow:
+        0 0 6px #8b5cff,
+        0 0 14px #8b5cff,
+        0 0 25px rgba(139,92,246,.7);
+
+    opacity: 0;
+
+    animation: fireflyMove 6s ease-in-out infinite;
+}
+
+@keyframes fireflyMove {
+
+    0% {
+        opacity: 0;
+        transform: translate(0,20px) scale(.5);
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    45% {
+        opacity: .2;
+    }
+
+    65% {
+        opacity: 1;
+        transform: translate(25px,-25px) scale(1);
+    }
+
+    80% {
+        opacity: .15;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-20px,-60px) scale(.4);
+    }
 }
 
 /* ===== NAV ===== */
@@ -59,36 +101,44 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 7%;
+
+    padding: 22px 7%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background: rgba(7,7,11,.68);
-    backdrop-filter: blur(18px);
+    background: rgba(5,5,9,.65);
+    backdrop-filter: blur(15px);
 
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.05);
 
     z-index: 100;
 }
 
 .logo {
-    font-size: 24px;
+    font-family: "Unbounded", sans-serif;
+    font-size: 20px;
     font-weight: 800;
 }
 
 .logo span {
-    color: #8b5cff;
+    color: #9b6cff;
 }
 
-nav a {
-    color: #999;
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #aaa;
     text-decoration: none;
-    margin-left: 25px;
+    font-size: 14px;
     transition: .3s;
 }
 
-nav a:hover {
+.nav-links a:hover {
     color: white;
 }
 
@@ -100,19 +150,16 @@ nav a:hover {
 
     display: flex;
     align-items: center;
-    justify-content: center;
 
-    text-align: center;
-
-    padding: 120px 20px 80px;
+    padding: 130px 7% 80px;
 
     overflow: hidden;
 }
 
 .hero-content {
+    max-width: 650px;
     position: relative;
-    z-index: 5;
-    max-width: 850px;
+    z-index: 10;
 }
 
 .badge {
@@ -120,395 +167,251 @@ nav a:hover {
 
     padding: 9px 15px;
 
+    border: 1px solid rgba(155,108,255,.3);
     border-radius: 30px;
 
-    border: 1px solid rgba(139,92,255,.35);
+    color: #bda5ff;
     background: rgba(139,92,255,.08);
 
-    color: #baa7ff;
-
-    font-size: 14px;
-
+    font-size: 13px;
     margin-bottom: 25px;
 }
 
-.hero h1 {
-    font-size: clamp(45px, 8vw, 90px);
+h1 {
+    font-family: "Unbounded", sans-serif;
 
-    line-height: .98;
+    font-size: clamp(42px,7vw,82px);
 
+    line-height: 1.05;
     letter-spacing: -4px;
 
     margin-bottom: 25px;
 }
 
-.hero h1 span {
-    background: linear-gradient(90deg,#8b5cff,#ff4d91);
-
-    -webkit-background-clip: text;
-    color: transparent;
+h1 span {
+    color: #9b6cff;
 }
 
 .hero p {
-    max-width: 650px;
-
-    margin: auto;
-
     color: #999;
+    font-size: 18px;
+    line-height: 1.7;
 
-    font-size: 19px;
-
-    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 35px;
 }
 
-.buttons {
-    margin-top: 35px;
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-block;
-
-    padding: 15px 25px;
-
-    border-radius: 12px;
-
-    text-decoration: none;
-
-    color: white;
-
-    font-weight: bold;
-
-    transition: .3s;
-}
-
-.btn-main {
-    background: linear-gradient(90deg,#7c4dff,#ff3f88);
-
-    box-shadow: 0 12px 35px rgba(124,77,255,.25);
-}
-
-.btn-main:hover {
-    transform: translateY(-3px);
-}
-
-.btn-second {
-    background: #111117;
-
-    border: 1px solid #292932;
-}
-
-.btn-second:hover {
-    border-color: #666;
-}
-
-/* ================================================= */
-/*                    3D НОУТБУК                    */
-/* ================================================= */
+/* ===== 3D LAPTOP ===== */
 
 .laptop-scene {
     position: absolute;
 
-    width: 760px;
-    height: 500px;
+    right: 3%;
+    top: 20%;
 
-    right: -70px;
-    bottom: -80px;
+    width: 620px;
+    height: 480px;
 
     perspective: 1200px;
 
-    opacity: .55;
-
-    transform: rotate(-7deg);
-
-    pointer-events: none;
-
-    z-index: 1;
+    z-index: 2;
 }
 
-/* Свет за ноутбуком */
-
-.laptop-glow {
+.laptop {
     position: absolute;
 
-    width: 600px;
-    height: 300px;
+    width: 520px;
+    height: 330px;
 
-    left: 80px;
-    top: 70px;
+    left: 50%;
+    top: 50%;
 
-    background: #7547ff;
+    transform:
+        translate(-50%,-50%)
+        rotateY(-22deg)
+        rotateX(10deg)
+        rotateZ(-3deg);
 
-    filter: blur(120px);
+    transform-style: preserve-3d;
 
-    opacity: .18;
+    animation: laptopFloat 6s ease-in-out infinite;
 }
 
-/* Экран */
+@keyframes laptopFloat {
 
-.laptop-screen {
+    0%,100% {
+        transform:
+            translate(-50%,-50%)
+            rotateY(-22deg)
+            rotateX(10deg)
+            rotateZ(-3deg);
+    }
+
+    50% {
+        transform:
+            translate(-50%,-54%)
+            rotateY(-18deg)
+            rotateX(7deg)
+            rotateZ(-2deg);
+    }
+}
+
+.screen {
     position: absolute;
 
-    width: 600px;
-    height: 360px;
+    width: 100%;
+    height: 270px;
 
-    left: 80px;
-    top: 20px;
+    background: #111118;
 
-    background: #111116;
+    border: 9px solid #1c1c24;
 
-    border: 8px solid #25252d;
-
-    border-radius: 20px 20px 8px 8px;
-
-    transform: rotateX(3deg);
+    border-radius: 16px 16px 5px 5px;
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.7),
-        inset 0 0 40px rgba(139,92,255,.08);
-}
-
-/* Верхняя камера */
-
-.camera {
-    position: absolute;
-
-    top: 6px;
-    left: 50%;
-
-    width: 5px;
-    height: 5px;
-
-    transform: translateX(-50%);
-
-    border-radius: 50%;
-
-    background: #777;
-
-    box-shadow: 0 0 8px #8b5cff;
-}
-
-/* Экран внутри */
-
-.screen-content {
-    position: absolute;
-
-    left: 16px;
-    right: 16px;
-    top: 18px;
-    bottom: 16px;
+        0 0 50px rgba(139,92,246,.22),
+        0 30px 70px rgba(0,0,0,.6);
 
     overflow: hidden;
+}
 
-    background:
-        radial-gradient(
-            circle at 70% 30%,
-            rgba(139,92,255,.08),
-            transparent 35%
-        ),
-        #08080c;
+.code {
+    padding: 25px;
 
-    border-radius: 8px;
+    font-family: monospace;
 
-    padding: 22px;
+    font-size: 13px;
 
-    text-align: left;
-
-    font-family: "Courier New", monospace;
-
-    font-size: 14px;
-
-    line-height: 1.7;
+    line-height: 1.8;
 
     color: #aaa;
 }
 
-/* Строка кода */
-
-.code-line {
-    white-space: nowrap;
+.purple {
+    color: #a978ff;
 }
 
-.code-purple {
-    color: #a98bff;
+.green {
+    color: #71d99a;
 }
 
-.code-pink {
-    color: #ff6b9d;
+.blue {
+    color: #6eb8ff;
 }
 
-.code-blue {
-    color: #65b8ff;
+.white {
+    color: #eee;
 }
-
-.code-green {
-    color: #72d6a1;
-}
-
-.code-gray {
-    color: #666;
-}
-
-/* Курсор */
 
 .cursor {
     display: inline-block;
 
     width: 7px;
-    height: 17px;
+    height: 15px;
 
-    margin-left: 3px;
+    background: #9b6cff;
 
     vertical-align: middle;
 
-    background: #8b5cff;
-
-    animation: blink .8s infinite;
+    animation: cursorBlink 1s infinite;
 }
 
-@keyframes blink {
-    0%, 45% {
-        opacity: 1;
-    }
-
-    46%, 100% {
+@keyframes cursorBlink {
+    50% {
         opacity: 0;
     }
 }
 
-/* Нижняя часть ноутбука */
-
-.laptop-base {
+.base {
     position: absolute;
 
-    width: 650px;
-    height: 35px;
+    width: 570px;
+    height: 25px;
 
-    left: 55px;
-    top: 375px;
+    left: 50%;
+    bottom: 30px;
+
+    transform:
+        translateX(-50%)
+        rotateX(65deg);
 
     background: linear-gradient(
-        180deg,
-        #383841,
-        #1c1c23
+        90deg,
+        #202027,
+        #363641,
+        #202027
     );
 
-    border-radius: 4px 4px 18px 18px;
-
-    transform: perspective(600px) rotateX(55deg);
-
-    box-shadow:
-        0 25px 40px rgba(0,0,0,.7);
+    border-radius: 5px 5px 14px 14px;
 }
-
-/* Трекпад */
 
 .trackpad {
     position: absolute;
 
-    width: 130px;
+    width: 110px;
     height: 55px;
 
-    left: 260px;
-    top: 382px;
+    left: 50%;
+    top: -20px;
 
-    background: #25252c;
+    transform: translateX(-50%);
 
-    border: 1px solid #3b3b45;
-
-    border-radius: 7px;
-
-    transform: perspective(600px) rotateX(55deg);
+    border: 1px solid #444;
+    border-radius: 5px;
 }
 
-/* Плавающие точки */
-
-.orb {
+.glow {
     position: absolute;
 
-    border-radius: 50%;
+    width: 430px;
+    height: 430px;
 
-    filter: blur(.2px);
+    right: 7%;
+    top: 18%;
 
-    animation: float 5s ease-in-out infinite;
+    background: #7144ff;
+
+    filter: blur(150px);
+
+    opacity: .13;
+
+    z-index: 1;
 }
 
-.orb.one {
-    width: 12px;
-    height: 12px;
-
-    background: #8b5cff;
-
-    left: 90px;
-    top: 80px;
-
-    box-shadow: 0 0 25px #8b5cff;
-}
-
-.orb.two {
-    width: 8px;
-    height: 8px;
-
-    background: #ff4d91;
-
-    right: 100px;
-    top: 150px;
-
-    box-shadow: 0 0 20px #ff4d91;
-
-    animation-delay: 1s;
-}
-
-.orb.three {
-    width: 10px;
-    height: 10px;
-
-    background: #65b8ff;
-
-    right: 180px;
-    bottom: 120px;
-
-    box-shadow: 0 0 20px #65b8ff;
-
-    animation-delay: 2s;
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-22px);
-    }
-}
-
-/* ===== СЕКЦИИ ===== */
+/* ===== SECTIONS ===== */
 
 section {
-    padding: 100px 7%;
+    position: relative;
+    z-index: 5;
+}
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section {
+    padding: 110px 0;
 }
 
 .section-title {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
+    font-family: "Unbounded", sans-serif;
 
-.section-subtitle {
-    color: #888;
+    font-size: 38px;
+
     margin-bottom: 45px;
+
+    letter-spacing: -2px;
 }
 
-/* ===== РАБОТЫ ===== */
+.section-title span {
+    color: #9b6cff;
+}
 
-.projects {
+/* ===== WORKS ===== */
+
+.grid {
     display: grid;
 
     grid-template-columns: repeat(3,1fr);
@@ -516,212 +419,193 @@ section {
     gap: 20px;
 }
 
-.card {
-    padding: 25px;
+.project {
+    min-height: 250px;
+
+    display: flex;
+    align-items: flex-end;
+
+    padding: 30px;
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        linear-gradient(
+            145deg,
+            #15121e,
+            #08080c
+        );
 
-    border: 1px solid rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.07);
 
-    transition: .35s;
+    transition: .3s;
+}
 
-    transform-style: preserve-3d;
+.project:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139,92,246,.35);
+}
+
+.project h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.project p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* ===== SERVICES ===== */
+
+.card {
+    padding: 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    background: rgba(255,255,255,.025);
+
+    backdrop-filter: blur(10px);
+
+    transition: .3s;
 }
 
 .card:hover {
-    transform:
-        perspective(700px)
-        rotateX(3deg)
-        rotateY(-3deg)
-        translateY(-7px);
+    transform: translateY(-6px);
 
-    border-color: rgba(139,92,255,.4);
-
-    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    border-color:
+        rgba(139,92,246,.35);
 }
 
-.preview {
-    height: 180px;
+.card-number {
+    color: #8b5cf6;
 
-    border-radius: 15px;
+    font-size: 13px;
 
     margin-bottom: 20px;
+}
 
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #888;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+/* ===== PRICES ===== */
+
+.price-card {
+    padding: 35px;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    background: rgba(255,255,255,.025);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.price-card.featured {
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 50px rgba(139,92,246,.1);
+}
+
+.price-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-family: "Unbounded", sans-serif;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+}
+
+.price span {
+    font-family: "Manrope", sans-serif;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.price-card ul {
+    list-style: none;
+
+    color: #999;
+
+    line-height: 2;
+
+    font-size: 14px;
+
+    margin-bottom: 30px;
+}
+
+/* ===== ORDER BUTTON ===== */
+
+.order-btn {
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #191324,
-            #0c0c12
-        );
+    width: 100%;
 
-    font-size: 28px;
+    margin-top: auto;
 
-    font-weight: bold;
-}
+    padding: 14px 18px;
 
-.card h3 {
-    margin-bottom: 10px;
-}
+    border-radius: 12px;
 
-.card p {
-    color: #888;
-    line-height: 1.5;
-}
+    background: #8b5cf6;
 
-/* ===== УСЛУГИ ===== */
+    color: white;
 
-.services {
-    display: grid;
+    text-decoration: none;
 
-    grid-template-columns: repeat(3,1fr);
+    font-weight: 700;
 
-    gap: 20px;
-}
-
-.service {
-    padding: 30px;
-
-    border-radius: 20px;
-
-    background: #101016;
-
-    border: 1px solid #22222b;
-
-    transition: .35s;
-}
-
-.service:hover {
-    transform: translateY(-7px);
-
-    border-color: #8b5cff;
-
-    box-shadow: 0 20px 40px rgba(0,0,0,.25);
-}
-
-.icon {
-    font-size: 35px;
-
-    margin-bottom: 20px;
-}
-
-.service h3 {
-    margin-bottom: 10px;
-}
-
-.service p {
-    color: #888;
-
-    line-height: 1.5;
-}
-
-/* ===== ЦЕНЫ ===== */
-
-.prices {
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 20px;
-}
-
-.price {
-    padding: 30px;
-
-    border-radius: 20px;
-
-    background: #101016;
-
-    border: 1px solid #24242d;
-
-    transition: .35s;
-}
-
-.price:hover {
-    transform: translateY(-7px);
-}
-
-.price.pro {
-    border-color: #8b5cff;
+    transition: .3s;
 
     box-shadow:
-        0 0 45px rgba(139,92,255,.12);
+        0 8px 25px rgba(139,92,246,.2);
 }
 
-.price h3 {
-    color: #aaa;
-}
+.order-btn:hover {
+    transform: translateY(-3px);
 
-.number {
-    font-size: 38px;
+    background: #986dff;
 
-    font-weight: bold;
-
-    margin: 15px 0;
-}
-
-.price ul {
-    list-style: none;
-
-    color: #aaa;
-
-    line-height: 2;
+    box-shadow:
+        0 12px 35px rgba(139,92,246,.35);
 }
 
 /* ===== ABOUT ===== */
 
 .about {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 50px;
-
-    align-items: center;
+    max-width: 750px;
 }
 
 .about p {
     color: #999;
 
+    font-size: 18px;
+
     line-height: 1.8;
-
-    font-size: 17px;
-}
-
-.stats {
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 15px;
-}
-
-.stat {
-    padding: 25px;
-
-    background: #101016;
-
-    border: 1px solid #22222b;
-
-    border-radius: 18px;
-}
-
-.stat strong {
-    display: block;
-
-    font-size: 32px;
-
-    margin-bottom: 5px;
-}
-
-.stat span {
-    color: #888;
 }
 
 /* ===== CONTACT ===== */
@@ -729,53 +613,88 @@ section {
 .contact {
     text-align: center;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(124,77,255,.08),
-            rgba(255,63,136,.05)
-        );
+    padding: 120px 20px;
+}
 
-    border-top: 1px solid rgba(255,255,255,.06);
+.contact h2 {
+    font-family: "Unbounded", sans-serif;
 
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: clamp(35px,6vw,60px);
+
+    margin-bottom: 20px;
 }
 
 .contact p {
     color: #888;
 
-    margin: 15px 0 30px;
+    margin-bottom: 30px;
 }
+
+.contact-btn {
+    display: inline-flex;
+
+    padding: 15px 25px;
+
+    border-radius: 12px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: .3s;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== FOOTER ===== */
 
 footer {
     padding: 30px 7%;
 
-    text-align: center;
+    border-top:
+        1px solid rgba(255,255,255,.06);
 
-    color: #555;
+    color: #666;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 13px;
 }
 
-/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+/* ===== MOBILE ===== */
 
 @media(max-width:900px) {
 
-    .laptop-scene {
-        width: 600px;
-
-        right: -170px;
-
-        bottom: -30px;
-
-        opacity: .25;
-
-        transform: scale(.75) rotate(-7deg);
+    .nav-links {
+        display: none;
     }
 
-    .projects,
-    .services,
-    .prices,
-    .about {
+    .laptop-scene {
+        opacity: .25;
+
+        right: -180px;
+
+        transform: scale(.8);
+    }
+
+    .grid {
         grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    h1 {
+        letter-spacing: -2px;
     }
 }
 
@@ -785,52 +704,38 @@ footer {
         padding: 18px 5%;
     }
 
-    nav div:last-child {
-        display: none;
-    }
-
-    section {
-        padding: 75px 5%;
-    }
-
     .hero {
-        padding-top: 130px;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
-    .hero h1 {
-        font-size: 48px;
-
-        letter-spacing: -2px;
+    .section {
+        padding: 80px 0;
     }
 
-    .hero p {
-        font-size: 16px;
+    .container {
+        width: 90%;
     }
 
     .laptop-scene {
-        right: -260px;
-
-        bottom: 20px;
-
-        opacity: .18;
-
-        transform: scale(.55) rotate(-7deg);
+        right: -270px;
+        top: 30%;
     }
 
-    .scene {
-        display: none;
-    }
-
-    .section-title {
-        font-size: 34px;
+    footer {
+        flex-direction: column;
+        gap: 10px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ===== NAV ===== -->
+<div class="fireflies"></div>
+
+<!-- NAV -->
 
 <nav>
 
@@ -838,120 +743,26 @@ footer {
         pitelicik<span>.</span>
     </div>
 
-    <div>
+    <div class="nav-links">
         <a href="#works">Работы</a>
         <a href="#services">Услуги</a>
         <a href="#prices">Цены</a>
-        <a href="#contact">Контакты</a>
+        <a href="#about">Обо мне</a>
     </div>
 
 </nav>
 
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <!-- 3D НОУТБУК -->
-
-    <div class="laptop-scene">
-
-        <div class="laptop-glow"></div>
-
-        <div class="orb one"></div>
-        <div class="orb two"></div>
-        <div class="orb three"></div>
-
-        <div class="laptop-screen">
-
-            <div class="camera"></div>
-
-            <div class="screen-content">
-
-                <div class="code-line">
-                    <span class="code-purple">const</span>
-                    <span class="code-blue"> website</span>
-                    =
-                    <span class="code-pink">{</span>
-                </div>
-
-                <div class="code-line">
-                    &nbsp;&nbsp;name:
-                    <span class="code-green">"pitelicik"</span>,
-                </div>
-
-                <div class="code-line">
-                    &nbsp;&nbsp;design:
-                    <span class="code-green">"modern"</span>,
-                </div>
-
-                <div class="code-line">
-                    &nbsp;&nbsp;responsive:
-                    <span class="code-purple">true</span>,
-                </div>
-
-                <div class="code-line">
-                    &nbsp;&nbsp;price:
-                    <span class="code-green">"от 1000 лей"</span>
-                </div>
-
-                <div class="code-line">
-                    <span class="code-pink">};</span>
-                </div>
-
-                <br>
-
-                <div class="code-line">
-                    <span class="code-purple">function</span>
-                    <span class="code-blue">
-                        createWebsite
-                    </span>() {
-                </div>
-
-                <div class="code-line">
-                    &nbsp;&nbsp;
-                    <span class="code-purple">return</span>
-                    <span class="code-green">
-                        "Let's build something great"
-                    </span>;
-                </div>
-
-                <div class="code-line">
-                    }
-                </div>
-
-                <br>
-
-                <div class="code-line">
-                    <span class="code-gray">
-                        // building your website...
-                    </span>
-                </div>
-
-                <div class="code-line">
-                    <span class="code-green">
-                        ✓ website ready
-                    </span>
-                    <span class="cursor"></span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="laptop-base"></div>
-
-        <div class="trackpad"></div>
-
-    </div>
-
-
-    <!-- ТЕКСТ -->
+    <div class="glow"></div>
 
     <div class="hero-content">
 
         <div class="badge">
-            ● Принимаю заказы
+            WEB DESIGN / DEVELOPMENT
         </div>
 
         <h1>
@@ -961,275 +772,76 @@ footer {
 
         <p>
             Современные сайты для бизнеса, проектов
-            и личных брендов. Красивый дизайн,
-            адаптация под телефон и быстрая загрузка.
+            и личных брендов. Дизайн, разработка,
+            адаптация под телефон и запуск.
         </p>
 
-        <div class="buttons">
-
-            <a
-                class="btn btn-main"
-                href="https://t.me/pizdezix"
-            >
-                Заказать сайт
-            </a>
-
-            <a
-                class="btn btn-second"
-                href="#works"
-            >
-                Смотреть работы
-            </a>
-
-        </div>
-
     </div>
 
-</section>
 
+    <!-- LAPTOP -->
 
-<!-- ===== РАБОТЫ ===== -->
+    <div class="laptop-scene">
 
-<section id="works">
+        <div class="laptop">
 
-    <h2 class="section-title">
-        Мои работы
-    </h2>
+            <div class="screen">
 
-    <p class="section-subtitle">
-        Примеры сайтов, которые я создаю
-    </p>
+                <div class="code">
 
-    <div class="projects">
+                    <div>
+                        <span class="purple">const</span>
+                        website =
+                        <span class="blue">"pitelicik"</span>;
+                    </div>
 
-        <div class="card">
+                    <div>
+                        <span class="purple">function</span>
+                        <span class="green">createSite</span>() {
+                    </div>
 
-            <div class="preview">
-                MARCA.STORE
+                    <div>
+                        &nbsp;&nbsp;design.
+                        <span class="white">modern</span>();
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;speed.
+                        <span class="white">fast</span>();
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;responsive.
+                        <span class="white">true</span>;
+                    </div>
+
+                    <div>
+                        &nbsp;&nbsp;return website;
+                    </div>
+
+                    <div>
+                        }
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <span class="purple">new</span>
+                        project();
+                    </div>
+
+                    <div>
+                        status:
+                        <span class="green">"online"</span>
+                        <span class="cursor"></span>
+                    </div>
+
+                </div>
+
             </div>
 
-            <h3>MARCA.STORE</h3>
-
-            <p>
-                Современный магазин одежды
-                с красивой презентацией товаров.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="preview">
-                BUSINESS
-            </div>
-
-            <h3>Business Site</h3>
-
-            <p>
-                Сайт для бизнеса с услугами,
-                преимуществами и контактами.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="preview">
-                PERSONAL
-            </div>
-
-            <h3>Personal Brand</h3>
-
-            <p>
-                Стильный сайт-портфолио
-                для человека или проекта.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===== УСЛУГИ ===== -->
-
-<section id="services">
-
-    <h2 class="section-title">
-        Что я делаю
-    </h2>
-
-    <p class="section-subtitle">
-        Подберём вариант под твою задачу
-    </p>
-
-    <div class="services">
-
-        <div class="service">
-
-            <div class="icon">🌐</div>
-
-            <h3>Landing Page</h3>
-
-            <p>
-                Одностраничный сайт для
-                продукта, услуги или бизнеса.
-            </p>
-
-        </div>
-
-
-        <div class="service">
-
-            <div class="icon">🛒</div>
-
-            <h3>Интернет-магазин</h3>
-
-            <p>
-                Красивый каталог товаров
-                с удобной структурой.
-            </p>
-
-        </div>
-
-
-        <div class="service">
-
-            <div class="icon">💻</div>
-
-            <h3>Портфолио</h3>
-
-            <p>
-                Персональный сайт для
-                специалиста или проекта.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===== ЦЕНЫ ===== -->
-
-<section id="prices">
-
-    <h2 class="section-title">
-        Цены
-    </h2>
-
-    <p class="section-subtitle">
-        Стоимость зависит от сложности проекта
-    </p>
-
-    <div class="prices">
-
-        <div class="price">
-
-            <h3>START</h3>
-
-            <div class="number">
-                от 1 000 лей
-            </div>
-
-            <ul>
-                <li>✓ Одностраничный сайт</li>
-                <li>✓ Адаптация под телефон</li>
-                <li>✓ Современный дизайн</li>
-            </ul>
-
-        </div>
-
-
-        <div class="price pro">
-
-            <h3>PRO</h3>
-
-            <div class="number">
-                от 3 000 лей
-            </div>
-
-            <ul>
-                <li>✓ Многостраничный сайт</li>
-                <li>✓ Красивые анимации</li>
-                <li>✓ Адаптация под телефон</li>
-                <li>✓ Форма обратной связи</li>
-            </ul>
-
-        </div>
-
-
-        <div class="price">
-
-            <h3>PREMIUM</h3>
-
-            <div class="number">
-                от 7 000 лей
-            </div>
-
-            <ul>
-                <li>✓ Большой проект</li>
-                <li>✓ Уникальный дизайн</li>
-                <li>✓ Продвинутая структура</li>
-                <li>✓ Полная адаптация</li>
-            </ul>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===== ABOUT ===== -->
-
-<section>
-
-    <div class="about">
-
-        <div>
-
-            <h2 class="section-title">
-                Почему я?
-            </h2>
-
-            <p>
-                Я создаю современные сайты с акцентом
-                на внешний вид, удобство и адаптацию
-                под мобильные устройства.
-                <br><br>
-                Каждый проект стараюсь сделать
-                индивидуальным, а не просто использовать
-                один и тот же шаблон.
-            </p>
-
-        </div>
-
-
-        <div class="stats">
-
-            <div class="stat">
-                <strong>1 000+</strong>
-                <span>лей — стартовая цена</span>
-            </div>
-
-            <div class="stat">
-                <strong>100%</strong>
-                <span>адаптация под телефон</span>
-            </div>
-
-            <div class="stat">
-                <strong>24/7</strong>
-                <span>связь по проекту</span>
-            </div>
-
-            <div class="stat">
-                <strong>∞</strong>
-                <span>идей для дизайна</span>
+            <div class="base">
+                <div class="trackpad"></div>
             </div>
 
         </div>
@@ -1239,33 +851,315 @@ footer {
 </section>
 
 
-<!-- ===== CONTACT ===== -->
+<!-- WORKS -->
 
-<section id="contact" class="contact">
+<section class="section" id="works">
 
-    <h2 class="section-title">
-        Есть проект?
-    </h2>
+<div class="container">
 
-    <p>
-        Напиши мне в Telegram и расскажи,
-        какой сайт тебе нужен.
-    </p>
+<h2 class="section-title">
+    Мои <span>работы</span>
+</h2>
 
-    <a
-        class="btn btn-main"
-        href="https://t.me/pizdezix"
-    >
-        Написать @pizdezix
-    </a>
+<div class="grid">
+
+<div class="project">
+<div>
+<h3>Business</h3>
+<p>Современный сайт компании с акцентом на продажи.</p>
+</div>
+</div>
+
+<div class="project">
+<div>
+<h3>Portfolio</h3>
+<p>Персональный сайт специалиста или бренда.</p>
+</div>
+</div>
+
+<div class="project">
+<div>
+<h3>Landing</h3>
+<p>Продающий одностраничный сайт под продукт.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+
+<div class="container">
+
+<h2 class="section-title">
+    Что я <span>делаю</span>
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-number">01</div>
+
+<h3>Web Design</h3>
+
+<p>
+Продуманный современный дизайн
+с акцентом на удобство пользователя.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-number">02</div>
+
+<h3>Development</h3>
+
+<p>
+Чистая HTML, CSS и JavaScript
+разработка с хорошей скоростью.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-number">03</div>
+
+<h3>Mobile</h3>
+
+<p>
+Адаптация сайта под смартфоны,
+планшеты и компьютеры.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRICES -->
+
+<section class="section" id="prices">
+
+<div class="container">
+
+<h2 class="section-title">
+    <span>Цены</span>
+</h2>
+
+<div class="grid">
+
+
+<!-- START -->
+
+<div class="price-card">
+
+<h3>START</h3>
+
+<div class="price">
+    1 000
+    <span>лей</span>
+</div>
+
+<ul>
+<li>✓ Одностраничный сайт</li>
+<li>✓ Адаптация под телефон</li>
+<li>✓ Современный дизайн</li>
+<li>✓ Форма связи</li>
+</ul>
+
+<a
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20START.%20Хотел%20бы%20обсудить%20детали."
+class="order-btn"
+target="_blank"
+>
+Заказать сайт
+</a>
+
+</div>
+
+
+<!-- PRO -->
+
+<div class="price-card featured">
+
+<h3>PRO</h3>
+
+<div class="price">
+    3 000
+    <span>лей</span>
+</div>
+
+<ul>
+<li>✓ До 5 блоков</li>
+<li>✓ Уникальный дизайн</li>
+<li>✓ Анимации</li>
+<li>✓ Адаптив</li>
+<li>✓ Подключение Telegram</li>
+</ul>
+
+<a
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20PRO.%20Хотел%20бы%20обсудить%20детали."
+class="order-btn"
+target="_blank"
+>
+Заказать сайт
+</a>
+
+</div>
+
+
+<!-- PREMIUM -->
+
+<div class="price-card">
+
+<h3>PREMIUM</h3>
+
+<div class="price">
+    7 000
+    <span>лей</span>
+</div>
+
+<ul>
+<li>✓ Большой сайт</li>
+<li>✓ Уникальная концепция</li>
+<li>✓ 3D элементы</li>
+<li>✓ Сложные анимации</li>
+<li>✓ Полная настройка</li>
+</ul>
+
+<a
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20PREMIUM.%20Хотел%20бы%20обсудить%20детали."
+class="order-btn"
+target="_blank"
+>
+Заказать сайт
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+<div class="container">
+
+<div class="about">
+
+<h2 class="section-title">
+    Обо <span>мне</span>
+</h2>
+
+<p>
+Я создаю современные сайты с упором
+на визуал, скорость и удобство.
+Каждый проект собирается под конкретную
+задачу, а не по одному шаблону.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>
+Есть идея?
+</h2>
+
+<p>
+Давай превратим её в нормальный сайт.
+</p>
+
+<a
+href="https://t.me/pizdezix"
+class="contact-btn"
+target="_blank"
+>
+Telegram
+</a>
 
 </section>
 
 
 <footer>
-    © 2026 pitelicik. Создание сайтов.
+
+<div>
+© 2026 pitelicik.
+</div>
+
+<div>
+Web Design & Development
+</div>
+
 </footer>
 
+
+<script>
+
+/* ===== СВЕТЛЯЧКИ ===== */
+
+const container =
+document.querySelector(".fireflies");
+
+for (let i = 0; i < 35; i++) {
+
+    const firefly =
+    document.createElement("span");
+
+    firefly.className =
+    "firefly";
+
+    firefly.style.left =
+    Math.random() * 100 + "%";
+
+    firefly.style.top =
+    Math.random() * 100 + "%";
+
+    firefly.style.animationDelay =
+    Math.random() * 6 + "s";
+
+    firefly.style.animationDuration =
+    3 + Math.random() * 5 + "s";
+
+    const size =
+    2 + Math.random() * 4;
+
+    firefly.style.width =
+    size + "px";
+
+    firefly.style.height =
+    size + "px";
+
+    container.appendChild(firefly);
+}
+
+</script>
 
 </body>
     </html>
