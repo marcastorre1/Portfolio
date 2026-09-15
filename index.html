@@ -2,732 +2,916 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>pitelicik. — Создание сайтов</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
+html{scroll-behavior:smooth}
 
-body {
-    background: #050509;
-    color: white;
-    font-family: "Manrope", sans-serif;
-    overflow-x: hidden;
+body{
+background:#050509;
+color:#fff;
+font-family:Arial,sans-serif;
+overflow-x:hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(123,74,255,.12), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(77,50,180,.10), transparent 30%);
-    pointer-events: none;
-    z-index: -2;
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 20% 20%,#7b4aff20,transparent 30%),
+radial-gradient(circle at 80% 70%,#4d32b418,transparent 30%);
 }
 
-/* ===== СВЕТЛЯЧКИ ===== */
+/* PARTICLES */
 
-.fireflies {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
+.fireflies{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:0;
 }
-
-.firefly {
-    position: absolute;
-    border-radius: 50%;
-    background: #c6a8ff;
 
-    box-shadow:
-        0 0 6px #8b5cff,
-        0 0 14px #8b5cff,
-        0 0 25px rgba(139,92,246,.7);
-
-    opacity: 0;
-
-    animation: fireflyMove 6s ease-in-out infinite;
+.firefly{
+position:absolute;
+border-radius:50%;
+background:#c6a8ff;
+opacity:0;
+box-shadow:
+0 0 7px #8b5cf6,
+0 0 18px #8b5cf6;
+animation:fly 6s ease-in-out infinite;
 }
-
-@keyframes fireflyMove {
-
-    0% {
-        opacity: 0;
-        transform: translate(0,20px) scale(.5);
-    }
 
-    20% {
-        opacity: .8;
-    }
-
-    45% {
-        opacity: .2;
-    }
-
-    65% {
-        opacity: 1;
-        transform: translate(25px,-25px) scale(1);
-    }
-
-    80% {
-        opacity: .15;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(-20px,-60px) scale(.4);
-    }
+@keyframes fly{
+0%{opacity:0;transform:translate(0,20px) scale(.5)}
+25%{opacity:.8}
+50%{opacity:.15}
+70%{opacity:1;transform:translate(25px,-25px) scale(1)}
+100%{opacity:0;transform:translate(-20px,-60px) scale(.4)}
 }
-
-/* ===== NAV ===== */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    padding: 22px 7%;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(5,5,9,.65);
-    backdrop-filter: blur(15px);
 
-    border-bottom: 1px solid rgba(255,255,255,.05);
+/* NAV */
 
-    z-index: 100;
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:22px 7%;
+display:flex;
+justify-content:space-between;
+background:#050509aa;
+backdrop-filter:blur(15px);
+border-bottom:1px solid #ffffff10;
+z-index:100;
 }
 
-.logo {
-    font-family: "Unbounded", sans-serif;
-    font-size: 20px;
-    font-weight: 800;
+.logo{
+font-size:21px;
+font-weight:800;
 }
 
-.logo span {
-    color: #9b6cff;
+.logo span{
+color:#9b6cff;
 }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
+.nav-links{
+display:flex;
+gap:28px;
 }
 
-.nav-links a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 14px;
-    transition: .3s;
+.nav-links a{
+color:#aaa;
+text-decoration:none;
+font-size:14px;
 }
 
-.nav-links a:hover {
-    color: white;
+.nav-links a:hover{
+color:white;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 
-.hero {
-    min-height: 100vh;
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    padding: 130px 7% 80px;
-
-    overflow: hidden;
+.hero{
+height:100vh;
+min-height:650px;
+display:flex;
+align-items:center;
+padding:120px 7%;
+position:relative;
+overflow:hidden;
 }
 
-.hero-content {
-    max-width: 650px;
-    position: relative;
-    z-index: 10;
+.hero-content{
+max-width:650px;
+z-index:5;
 }
-
-.badge {
-    display: inline-block;
 
-    padding: 9px 15px;
-
-    border: 1px solid rgba(155,108,255,.3);
-    border-radius: 30px;
-
-    color: #bda5ff;
-    background: rgba(139,92,255,.08);
-
-    font-size: 13px;
-    margin-bottom: 25px;
+.badge{
+display:inline-block;
+padding:9px 15px;
+border:1px solid #9b6cff55;
+border-radius:30px;
+color:#bda5ff;
+background:#8b5cff12;
+font-size:12px;
+margin-bottom:25px;
 }
-
-h1 {
-    font-family: "Unbounded", sans-serif;
-
-    font-size: clamp(42px,7vw,82px);
 
-    line-height: 1.05;
-    letter-spacing: -4px;
-
-    margin-bottom: 25px;
+h1{
+font-size:clamp(42px,7vw,82px);
+line-height:1.05;
+letter-spacing:-4px;
+margin-bottom:25px;
 }
 
-h1 span {
-    color: #9b6cff;
+h1 span,
+.title span{
+color:#9b6cff;
 }
-
-.hero p {
-    color: #999;
-    font-size: 18px;
-    line-height: 1.7;
 
-    max-width: 560px;
-    margin-bottom: 35px;
+.hero p{
+color:#999;
+font-size:18px;
+line-height:1.7;
+max-width:560px;
 }
-
-/* ===== 3D LAPTOP ===== */
-
-.laptop-scene {
-    position: absolute;
 
-    right: 3%;
-    top: 20%;
+/* LAPTOP */
 
-    width: 620px;
-    height: 480px;
-
-    perspective: 1200px;
-
-    z-index: 2;
+.laptop{
+position:absolute;
+right:5%;
+top:28%;
+width:500px;
+height:300px;
+transform:
+perspective(900px)
+rotateY(-20deg)
+rotateX(8deg);
+animation:float 5s ease-in-out infinite;
 }
-
-.laptop {
-    position: absolute;
-
-    width: 520px;
-    height: 330px;
-
-    left: 50%;
-    top: 50%;
 
-    transform:
-        translate(-50%,-50%)
-        rotateY(-22deg)
-        rotateX(10deg)
-        rotateZ(-3deg);
-
-    transform-style: preserve-3d;
-
-    animation: laptopFloat 6s ease-in-out infinite;
+@keyframes float{
+50%{
+transform:
+perspective(900px)
+rotateY(-16deg)
+rotateX(5deg)
+translateY(-15px);
 }
-
-@keyframes laptopFloat {
-
-    0%,100% {
-        transform:
-            translate(-50%,-50%)
-            rotateY(-22deg)
-            rotateX(10deg)
-            rotateZ(-3deg);
-    }
-
-    50% {
-        transform:
-            translate(-50%,-54%)
-            rotateY(-18deg)
-            rotateX(7deg)
-            rotateZ(-2deg);
-    }
 }
-
-.screen {
-    position: absolute;
-
-    width: 100%;
-    height: 270px;
-
-    background: #111118;
 
-    border: 9px solid #1c1c24;
-
-    border-radius: 16px 16px 5px 5px;
-
-    box-shadow:
-        0 0 50px rgba(139,92,246,.22),
-        0 30px 70px rgba(0,0,0,.6);
-
-    overflow: hidden;
+.screen{
+height:250px;
+background:#111118;
+border:9px solid #25252d;
+border-radius:16px;
+box-shadow:0 0 70px #8b5cf633;
+overflow:hidden;
 }
 
-.code {
-    padding: 25px;
+.code{
+padding:25px;
+font:13px/1.8 monospace;
+color:#aaa;
+}
 
-    font-family: monospace;
+.p{color:#a978ff}
+.g{color:#71d99a}
+.b{color:#6eb8ff}
 
-    font-size: 13px;
+.base{
+height:22px;
+background:linear-gradient(
+90deg,
+#202027,
+#444450,
+#202027
+);
+border-radius:5px 5px 15px 15px;
+box-shadow:0 20px 35px #000;
+}
 
-    line-height: 1.8;
+/* SECTIONS */
 
-    color: #aaa;
+section{
+position:relative;
+z-index:2;
 }
 
-.purple {
-    color: #a978ff;
+.section{
+padding:110px 7%;
 }
 
-.green {
-    color: #71d99a;
+.container{
+max-width:1200px;
+margin:auto;
 }
 
-.blue {
-    color: #6eb8ff;
+.title{
+font-size:38px;
+margin-bottom:45px;
 }
 
-.white {
-    color: #eee;
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
 }
-
-.cursor {
-    display: inline-block;
-
-    width: 7px;
-    height: 15px;
-
-    background: #9b6cff;
-
-    vertical-align: middle;
 
-    animation: cursorBlink 1s infinite;
+.project{
+min-height:220px;
+display:flex;
+align-items:end;
+padding:30px;
+border-radius:20px;
+background:
+linear-gradient(145deg,#15121e,#08080c);
+border:1px solid #ffffff10;
+transition:.3s;
 }
 
-@keyframes cursorBlink {
-    50% {
-        opacity: 0;
-    }
+.project:hover,
+.card:hover,
+.price-card:hover{
+transform:translateY(-7px);
+border-color:#8b5cf655;
 }
 
-.base {
-    position: absolute;
-
-    width: 570px;
-    height: 25px;
-
-    left: 50%;
-    bottom: 30px;
-
-    transform:
-        translateX(-50%)
-        rotateX(65deg);
-
-    background: linear-gradient(
-        90deg,
-        #202027,
-        #363641,
-        #202027
-    );
-
-    border-radius: 5px 5px 14px 14px;
+.project h3,
+.card h3{
+margin-bottom:10px;
+font-size:22px;
 }
-
-.trackpad {
-    position: absolute;
-
-    width: 110px;
-    height: 55px;
-
-    left: 50%;
-    top: -20px;
-
-    transform: translateX(-50%);
 
-    border: 1px solid #444;
-    border-radius: 5px;
+.project p,
+.card p{
+color:#888;
+line-height:1.7;
+font-size:14px;
 }
 
-.glow {
-    position: absolute;
-
-    width: 430px;
-    height: 430px;
-
-    right: 7%;
-    top: 18%;
-
-    background: #7144ff;
-
-    filter: blur(150px);
-
-    opacity: .13;
+.card{
+padding:30px;
+border-radius:20px;
+border:1px solid #ffffff10;
+background:#ffffff05;
+transition:.3s;
+}
 
-    z-index: 1;
+.card-number{
+color:#8b5cf6;
+font-size:12px;
+margin-bottom:20px;
 }
 
-/* ===== SECTIONS ===== */
+/* PRICES */
 
-section {
-    position: relative;
-    z-index: 5;
+.price-card{
+padding:30px;
+border-radius:20px;
+border:1px solid #ffffff10;
+background:#ffffff05;
+display:flex;
+flex-direction:column;
+transition:.3s;
 }
 
-.container {
-    width: 86%;
-    max-width: 1200px;
-    margin: auto;
+.price-card.featured{
+border-color:#8b5cf6;
+box-shadow:0 0 45px #8b5cf618;
 }
 
-.section {
-    padding: 110px 0;
+.price-card h3{
+margin-bottom:15px;
 }
-
-.section-title {
-    font-family: "Unbounded", sans-serif;
-
-    font-size: 38px;
-
-    margin-bottom: 45px;
 
-    letter-spacing: -2px;
+.price{
+font-size:30px;
+font-weight:800;
+margin-bottom:25px;
 }
 
-.section-title span {
-    color: #9b6cff;
+.price span{
+font-size:13px;
+color:#777;
+font-weight:normal;
 }
 
-/* ===== WORKS ===== */
-
-.grid {
-    display: grid;
+.price-card ul{
+list-style:none;
+color:#999;
+line-height:2;
+margin-bottom:30px;
+font-size:14px;
+}
 
-    grid-template-columns: repeat(3,1fr);
+/* BUTTON */
 
-    gap: 20px;
+.btn{
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px 22px;
+border-radius:12px;
+background:
+linear-gradient(135deg,#8b5cf6,#7042e8);
+color:#fff;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 0 30px #8b5cf655;
+transition:.3s;
 }
 
-.project {
-    min-height: 250px;
-
-    display: flex;
-    align-items: flex-end;
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 50px #8b5cf699;
+}
 
-    padding: 30px;
+.btn:after{
+content:"";
+position:absolute;
+inset:-10px;
+border-radius:15px;
+background:#8b5cf622;
+filter:blur(12px);
+z-index:-1;
+}
 
-    border-radius: 20px;
+/* ABOUT */
 
-    background:
-        linear-gradient(
-            145deg,
-            #15121e,
-            #08080c
-        );
+.about{
+max-width:750px;
+color:#999;
+font-size:18px;
+line-height:1.8;
+}
 
-    border: 1px solid rgba(255,255,255,.07);
+/* =========================
+   ROBOT
+========================= */
 
-    transition: .3s;
+.robot-area{
+height:420px;
+position:relative;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+overflow:hidden;
+padding-bottom:35px;
 }
 
-.project:hover {
-    transform: translateY(-5px);
-    border-color: rgba(139,92,246,.35);
+.robot-title{
+position:absolute;
+top:25px;
+left:0;
+width:100%;
+text-align:center;
+font-size:11px;
+letter-spacing:3px;
+color:#666;
 }
 
-.project h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
+.robot-glow{
+position:absolute;
+bottom:35px;
+width:250px;
+height:120px;
+background:#008cff;
+filter:blur(80px);
+opacity:.12;
 }
 
-.project p {
-    color: #888;
-    font-size: 14px;
+.platform{
+position:absolute;
+bottom:20px;
+width:220px;
+height:35px;
+border-radius:50%;
+background:#008cff12;
+box-shadow:0 0 50px #008cff33;
+border:1px solid #008cff33;
 }
 
-/* ===== SERVICES ===== */
+/* ROBOT BODY */
 
-.card {
-    padding: 30px;
+.robot{
+position:relative;
+width:260px;
+height:300px;
+z-index:3;
+transform:scale(.78);
+transform-origin:bottom center;
+animation:robotFloat 4s ease-in-out infinite;
+}
 
-    border-radius: 20px;
+@keyframes robotFloat{
+0%,100%{
+transform:scale(.78) translateY(0);
+}
+50%{
+transform:scale(.78) translateY(-9px);
+}
+}
 
-    border: 1px solid rgba(255,255,255,.07);
+/* HEAD */
 
-    background: rgba(255,255,255,.025);
+.head{
+position:absolute;
+left:70px;
+top:5px;
+width:120px;
+height:95px;
+border-radius:38px;
+background:
+linear-gradient(
+145deg,
+#ffffff,
+#d9e2e8 65%,
+#a8b7c1
+);
+border:2px solid #f3f8fb;
+box-shadow:
+inset -12px -10px 20px #52616c33,
+0 12px 25px #0005;
+transform:rotate(-3deg);
+transition:transform .15s ease-out;
+}
+
+/* EARS */
 
-    backdrop-filter: blur(10px);
+.ear{
+position:absolute;
+top:27px;
+width:24px;
+height:40px;
+border-radius:50%;
+background:
+linear-gradient(145deg,#eef4f7,#aebcc5);
+border:2px solid #dce7ed;
+}
+
+.ear.left{left:-12px}
+.ear.right{right:-12px}
+
+.ear:after{
+content:"";
+position:absolute;
+inset:5px;
+border:3px solid #20cfff;
+border-radius:50%;
+box-shadow:0 0 10px #00baff;
+}
+
+/* ANTENNA */
+
+.antenna{
+position:absolute;
+width:3px;
+height:20px;
+background:#00aaff;
+left:58px;
+top:-20px;
+box-shadow:0 0 10px #00cfff;
+}
 
-    transition: .3s;
+.antenna:after{
+content:"";
+position:absolute;
+width:9px;
+height:9px;
+left:-3px;
+top:-6px;
+border-radius:50%;
+background:#62eaff;
+box-shadow:0 0 20px #00cfff;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+50%{
+transform:scale(1.3);
+}
+}
+
+/* =========================
+   НОВЫЕ ГЛАЗА
+========================= */
+
+.face{
+position:absolute;
+left:24px;
+top:20px;
+width:88px;
+height:57px;
+border-radius:20px 27px 22px 22px;
+background:
+linear-gradient(
+135deg,
+#020b16,
+#05284a 50%,
+#007dc0
+);
+border:1px solid #1ed7ff55;
+box-shadow:
+inset 0 0 20px #00bfff33,
+0 0 12px #00aaff55,
+0 0 30px #00aaff22;
+overflow:hidden;
+transition:transform .12s ease-out;
+}
+
+/* стеклянный блик */
+
+.face:before{
+content:"";
+position:absolute;
+left:7px;
+top:6px;
+width:55px;
+height:9px;
+border-radius:20px;
+background:#bff7ff44;
+filter:blur(3px);
+transform:rotate(-7deg);
+}
+
+/* глаза */
+
+.eye{
+position:absolute;
+top:16px;
+width:27px;
+height:21px;
+border-radius:50%;
+background:
+radial-gradient(
+circle at 50% 50%,
+#eaffff 0 8%,
+#51e7ff 22%,
+#00aaff 50%,
+#003f76 75%,
+#00192c 100%
+);
+box-shadow:
+0 0 7px #55eaff,
+0 0 17px #00bfff,
+inset 0 0 8px #ffffff88;
+transition:transform .12s ease-out;
+}
+
+/* левый глаз */
+
+.eye.left{
+left:13px;
+}
+
+/* правый глаз */
+
+.eye.right{
+right:13px;
+}
+
+/* маленькие блики в глазах */
+
+.eye:before{
+content:"";
+position:absolute;
+width:6px;
+height:4px;
+border-radius:50%;
+background:white;
+top:4px;
+left:6px;
+box-shadow:0 0 5px white;
+}
+
+/* нижняя подсветка */
+
+.face:after{
+content:"";
+position:absolute;
+bottom:7px;
+left:24px;
+width:40px;
+height:3px;
+border-radius:20px;
+background:#42ddff;
+box-shadow:
+0 0 8px #00d9ff,
+0 0 16px #00aaff;
+opacity:.8;
+}
+
+/* NECK */
+
+.neck{
+position:absolute;
+left:108px;
+top:92px;
+width:45px;
+height:42px;
+border-radius:10px;
+background:
+repeating-linear-gradient(
+#111a22 0 6px,
+#46535d 7px 10px
+);
+}
+
+/* BODY */
+
+.body{
+position:absolute;
+left:48px;
+top:112px;
+width:165px;
+height:125px;
+border-radius:38px 38px 25px 25px;
+background:
+linear-gradient(
+145deg,
+#fff,
+#dce5eb 55%,
+#aebbc4
+);
+border:2px solid #edf5f9;
+box-shadow:
+inset -18px -13px 25px #30455333,
+0 18px 30px #0005;
+transform:skew(-3deg);
+}
+
+.chest{
+position:absolute;
+left:58px;
+top:20px;
+width:46px;
+height:76px;
+background:
+linear-gradient(
+145deg,
+#f8fbfd,
+#abb9c3
+);
+clip-path:
+polygon(20% 0,80% 0,100% 100%,0 100%);
+}
+
+.core{
+position:absolute;
+left:70px;
+top:32px;
+width:23px;
+height:38px;
+border-radius:50%;
+background:#008ee5;
+box-shadow:
+0 0 9px #00cfff,
+0 0 20px #00aaff;
+animation:corePulse 2s infinite;
+}
+
+@keyframes corePulse{
+50%{
+box-shadow:
+0 0 15px #00cfff,
+0 0 35px #00aaff;
+}
+}
+
+/* ARMS */
+
+.arm{
+position:absolute;
+top:125px;
+width:48px;
+height:125px;
+transform-origin:top center;
+}
+
+.arm.left{
+left:15px;
+transform:rotate(14deg);
+}
+
+.arm.right{
+right:3px;
+transform:rotate(-18deg);
+animation:reach 3s ease-in-out infinite;
+}
+
+@keyframes reach{
+0%,100%{
+transform:rotate(-18deg);
+}
+50%{
+transform:rotate(-8deg) translate(9px,-4px);
+}
+}
+
+.shoulder{
+width:46px;
+height:46px;
+border-radius:50%;
+background:
+linear-gradient(145deg,#fff,#bcc9d1);
+border:2px solid #edf5f9;
+}
+
+.upper{
+margin-left:6px;
+width:34px;
+height:63px;
+border-radius:20px;
+background:
+linear-gradient(
+90deg,
+#eaf0f4,
+#aab8c2,
+#f5f8fa
+);
+border:2px solid #e9f1f5;
+}
+
+.joint{
+margin-left:5px;
+width:32px;
+height:27px;
+border-radius:50%;
+background:#18222a;
+border:3px solid #84919b;
+}
+
+.hand{
+margin-left:-3px;
+width:45px;
+height:33px;
+border-radius:17px;
+background:
+linear-gradient(145deg,#f5f9fb,#aebbc4);
+border:2px solid #edf5f9;
+}
+
+.finger{
+display:inline-block;
+width:8px;
+height:22px;
+margin:15px 0 0;
+border-radius:7px;
+background:#dce6eb;
+border:1px solid #fff;
 }
 
-.card:hover {
-    transform: translateY(-6px);
+/* LEGS */
 
-    border-color:
-        rgba(139,92,246,.35);
+.leg{
+position:absolute;
+top:225px;
+width:48px;
+height:65px;
+border-radius:18px;
+background:
+linear-gradient(145deg,#f7fafc,#b8c4cc);
+border:2px solid #edf5f9;
 }
 
-.card-number {
-    color: #8b5cf6;
+.leg.left{left:82px}
+.leg.right{right:82px}
 
-    font-size: 13px;
+/* ROBOT BUTTON */
 
-    margin-bottom: 20px;
+.robot-button{
+position:absolute;
+right:9%;
+bottom:115px;
+z-index:10;
 }
 
-.card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
+.robot-button .btn{
+background:
+linear-gradient(135deg,#078eea,#0055d8);
+box-shadow:0 0 25px #008cff88;
+padding:12px 18px;
+font-size:13px;
 }
-
-.card p {
-    color: #888;
-
-    line-height: 1.7;
 
-    font-size: 14px;
+.robot-button small{
+display:block;
+text-align:center;
+color:#6ddcff;
+margin-top:7px;
+font-size:9px;
 }
 
-/* ===== PRICES ===== */
+/* CONTACT */
 
-.price-card {
-    padding: 35px;
-
-    border-radius: 22px;
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    background: rgba(255,255,255,.025);
-
-    display: flex;
-    flex-direction: column;
+.contact{
+text-align:center;
+padding:100px 20px;
 }
-
-.price-card.featured {
-    border-color: #8b5cf6;
 
-    box-shadow:
-        0 0 50px rgba(139,92,246,.1);
+.contact h2{
+font-size:clamp(38px,6vw,60px);
+margin-bottom:20px;
 }
 
-.price-card h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
+.contact p{
+color:#888;
+margin-bottom:30px;
 }
 
-.price {
-    font-family: "Unbounded", sans-serif;
-
-    font-size: 30px;
-
-    margin-bottom: 25px;
+.contact .btn{
+display:inline-flex;
 }
 
-.price span {
-    font-family: "Manrope", sans-serif;
+/* FOOTER */
 
-    color: #777;
-
-    font-size: 13px;
+footer{
+padding:30px 7%;
+border-top:1px solid #ffffff0d;
+color:#666;
+display:flex;
+justify-content:space-between;
+font-size:13px;
 }
-
-.price-card ul {
-    list-style: none;
 
-    color: #999;
+/* MOBILE */
 
-    line-height: 2;
+@media(max-width:900px){
 
-    font-size: 14px;
-
-    margin-bottom: 30px;
+.nav-links{
+display:none;
 }
-
-/* ===== ORDER BUTTON ===== */
-
-.order-btn {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
 
-    margin-top: auto;
-
-    padding: 14px 18px;
-
-    border-radius: 12px;
-
-    background: #8b5cf6;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    transition: .3s;
-
-    box-shadow:
-        0 8px 25px rgba(139,92,246,.2);
+.laptop{
+opacity:.2;
+right:-180px;
 }
-
-.order-btn:hover {
-    transform: translateY(-3px);
 
-    background: #986dff;
-
-    box-shadow:
-        0 12px 35px rgba(139,92,246,.35);
+.grid{
+grid-template-columns:1fr;
 }
-
-/* ===== ABOUT ===== */
 
-.about {
-    max-width: 750px;
+.robot-area{
+height:360px;
 }
-
-.about p {
-    color: #999;
-
-    font-size: 18px;
 
-    line-height: 1.8;
+.robot{
+transform:scale(.65);
 }
 
-/* ===== CONTACT ===== */
-
-.contact {
-    text-align: center;
-
-    padding: 120px 20px;
+.robot-button{
+right:4%;
+bottom:90px;
 }
 
-.contact h2 {
-    font-family: "Unbounded", sans-serif;
-
-    font-size: clamp(35px,6vw,60px);
-
-    margin-bottom: 20px;
 }
 
-.contact p {
-    color: #888;
+@media(max-width:600px){
 
-    margin-bottom: 30px;
+.hero{
+padding:110px 5%;
 }
-
-.contact-btn {
-    display: inline-flex;
 
-    padding: 15px 25px;
-
-    border-radius: 12px;
-
-    background: #8b5cf6;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    transition: .3s;
+.laptop{
+right:-280px;
 }
 
-.contact-btn:hover {
-    transform: translateY(-3px);
+.section{
+padding:80px 5%;
 }
-
-/* ===== FOOTER ===== */
-
-footer {
-    padding: 30px 7%;
-
-    border-top:
-        1px solid rgba(255,255,255,.06);
 
-    color: #666;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    font-size: 13px;
+.robot-area{
+height:350px;
 }
-
-/* ===== MOBILE ===== */
-
-@media(max-width:900px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .laptop-scene {
-        opacity: .25;
-
-        right: -180px;
-
-        transform: scale(.8);
-    }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-
-    h1 {
-        letter-spacing: -2px;
-    }
+.robot{
+transform:scale(.55);
 }
-
-@media(max-width:600px) {
-
-    nav {
-        padding: 18px 5%;
-    }
 
-    .hero {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .section {
-        padding: 80px 0;
-    }
-
-    .container {
-        width: 90%;
-    }
+.robot-button{
+right:8px;
+bottom:75px;
+}
 
-    .laptop-scene {
-        right: -270px;
-        top: 30%;
-    }
+.robot-button small{
+display:none;
+}
 
-    footer {
-        flex-direction: column;
-        gap: 10px;
-    }
+footer{
+flex-direction:column;
+gap:10px;
 }
 
+}
 </style>
 </head>
 
@@ -735,20 +919,18 @@ footer {
 
 <div class="fireflies"></div>
 
-<!-- NAV -->
-
 <nav>
 
-    <div class="logo">
-        pitelicik<span>.</span>
-    </div>
+<div class="logo">
+pitelicik<span>.</span>
+</div>
 
-    <div class="nav-links">
-        <a href="#works">Работы</a>
-        <a href="#services">Услуги</a>
-        <a href="#prices">Цены</a>
-        <a href="#about">Обо мне</a>
-    </div>
+<div class="nav-links">
+<a href="#works">Работы</a>
+<a href="#services">Услуги</a>
+<a href="#prices">Цены</a>
+<a href="#about">Обо мне</a>
+</div>
 
 </nav>
 
@@ -757,96 +939,61 @@ footer {
 
 <section class="hero">
 
-    <div class="glow"></div>
+<div class="hero-content">
 
-    <div class="hero-content">
+<div class="badge">
+WEB DESIGN / DEVELOPMENT
+</div>
 
-        <div class="badge">
-            WEB DESIGN / DEVELOPMENT
-        </div>
+<h1>
+Создаю сайты,<br>
+которые <span>работают.</span>
+</h1>
 
-        <h1>
-            Создаю сайты,<br>
-            которые <span>работают.</span>
-        </h1>
+<p>
+Современные сайты для бизнеса, проектов и личных брендов.
+Дизайн, разработка, адаптация под телефон и запуск.
+</p>
 
-        <p>
-            Современные сайты для бизнеса, проектов
-            и личных брендов. Дизайн, разработка,
-            адаптация под телефон и запуск.
-        </p>
-
-    </div>
+</div>
 
 
-    <!-- LAPTOP -->
+<div class="laptop">
 
-    <div class="laptop-scene">
+<div class="screen">
 
-        <div class="laptop">
+<div class="code">
 
-            <div class="screen">
+<div>
+<span class="p">const</span>
+website =
+<span class="b">"pitelicik"</span>;
+</div>
 
-                <div class="code">
+<div>
+<span class="p">function</span>
+<span class="g">createSite</span>() {
+</div>
 
-                    <div>
-                        <span class="purple">const</span>
-                        website =
-                        <span class="blue">"pitelicik"</span>;
-                    </div>
+<div>&nbsp;&nbsp;design.modern();</div>
+<div>&nbsp;&nbsp;speed.fast();</div>
+<div>&nbsp;&nbsp;responsive.true;</div>
+<div>&nbsp;&nbsp;return website;</div>
+<div>}</div>
 
-                    <div>
-                        <span class="purple">function</span>
-                        <span class="green">createSite</span>() {
-                    </div>
+<br>
 
-                    <div>
-                        &nbsp;&nbsp;design.
-                        <span class="white">modern</span>();
-                    </div>
+<div>
+status:
+<span class="g">"online"</span>
+</div>
 
-                    <div>
-                        &nbsp;&nbsp;speed.
-                        <span class="white">fast</span>();
-                    </div>
+</div>
+</div>
 
-                    <div>
-                        &nbsp;&nbsp;responsive.
-                        <span class="white">true</span>;
-                    </div>
+<div class="base"></div>
 
-                    <div>
-                        &nbsp;&nbsp;return website;
-                    </div>
-
-                    <div>
-                        }
-                    </div>
-
-                    <br>
-
-                    <div>
-                        <span class="purple">new</span>
-                        project();
-                    </div>
-
-                    <div>
-                        status:
-                        <span class="green">"online"</span>
-                        <span class="cursor"></span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="base">
-                <div class="trackpad"></div>
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -857,35 +1004,34 @@ footer {
 
 <div class="container">
 
-<h2 class="section-title">
-    Мои <span>работы</span>
+<h2 class="title">
+<span>Работы</span>
 </h2>
 
 <div class="grid">
 
 <div class="project">
 <div>
+<h3>Landing Page</h3>
+<p>Современный сайт для продукта или бизнеса.</p>
+</div>
+</div>
+
+<div class="project">
+<div>
 <h3>Business</h3>
-<p>Современный сайт компании с акцентом на продажи.</p>
+<p>Сайт компании с презентацией услуг.</p>
 </div>
 </div>
 
 <div class="project">
 <div>
-<h3>Portfolio</h3>
-<p>Персональный сайт специалиста или бренда.</p>
-</div>
-</div>
-
-<div class="project">
-<div>
-<h3>Landing</h3>
-<p>Продающий одностраничный сайт под продукт.</p>
+<h3>Personal</h3>
+<p>Персональный сайт или портфолио.</p>
 </div>
 </div>
 
 </div>
-
 </div>
 
 </section>
@@ -897,53 +1043,31 @@ footer {
 
 <div class="container">
 
-<h2 class="section-title">
-    Что я <span>делаю</span>
+<h2 class="title">
+<span>Услуги</span>
 </h2>
 
 <div class="grid">
 
 <div class="card">
-
-<div class="card-number">01</div>
-
-<h3>Web Design</h3>
-
-<p>
-Продуманный современный дизайн
-с акцентом на удобство пользователя.
-</p>
-
+<div class="card-number">01 / DESIGN</div>
+<h3>Дизайн</h3>
+<p>Современный визуальный стиль под ваш проект.</p>
 </div>
 
 <div class="card">
-
-<div class="card-number">02</div>
-
-<h3>Development</h3>
-
-<p>
-Чистая HTML, CSS и JavaScript
-разработка с хорошей скоростью.
-</p>
-
+<div class="card-number">02 / DEVELOPMENT</div>
+<h3>Разработка</h3>
+<p>Быстрые и адаптивные сайты для телефона и ПК.</p>
 </div>
 
 <div class="card">
-
-<div class="card-number">03</div>
-
-<h3>Mobile</h3>
-
-<p>
-Адаптация сайта под смартфоны,
-планшеты и компьютеры.
-</p>
-
+<div class="card-number">03 / LAUNCH</div>
+<h3>Запуск</h3>
+<p>Подготовка сайта к публикации и подключение функций.</p>
 </div>
 
 </div>
-
 </div>
 
 </section>
@@ -955,22 +1079,18 @@ footer {
 
 <div class="container">
 
-<h2 class="section-title">
-    <span>Цены</span>
+<h2 class="title">
+<span>Цены</span>
 </h2>
 
 <div class="grid">
-
-
-<!-- START -->
 
 <div class="price-card">
 
 <h3>START</h3>
 
 <div class="price">
-    1 000
-    <span>лей</span>
+1 000 <span>лей</span>
 </div>
 
 <ul>
@@ -981,25 +1101,21 @@ footer {
 </ul>
 
 <a
-href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20START.%20Хотел%20бы%20обсудить%20детали."
-class="order-btn"
+class="btn"
 target="_blank"
->
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20START.">
 Заказать сайт
 </a>
 
 </div>
 
 
-<!-- PRO -->
-
 <div class="price-card featured">
 
 <h3>PRO</h3>
 
 <div class="price">
-    3 000
-    <span>лей</span>
+3 000 <span>лей</span>
 </div>
 
 <ul>
@@ -1007,29 +1123,25 @@ target="_blank"
 <li>✓ Уникальный дизайн</li>
 <li>✓ Анимации</li>
 <li>✓ Адаптив</li>
-<li>✓ Подключение Telegram</li>
+<li>✓ Telegram</li>
 </ul>
 
 <a
-href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20PRO.%20Хотел%20бы%20обсудить%20детали."
-class="order-btn"
+class="btn"
 target="_blank"
->
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20PRO.">
 Заказать сайт
 </a>
 
 </div>
 
 
-<!-- PREMIUM -->
-
 <div class="price-card">
 
 <h3>PREMIUM</h3>
 
 <div class="price">
-    7 000
-    <span>лей</span>
+7 000 <span>лей</span>
 </div>
 
 <ul>
@@ -1041,18 +1153,15 @@ target="_blank"
 </ul>
 
 <a
-href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20по%20тарифу%20PREMIUM.%20Хотел%20бы%20обсудить%20детали."
-class="order-btn"
+class="btn"
 target="_blank"
->
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт%20PREMIUM.">
 Заказать сайт
 </a>
 
 </div>
 
-
 </div>
-
 </div>
 
 </section>
@@ -1064,20 +1173,126 @@ target="_blank"
 
 <div class="container">
 
-<div class="about">
-
-<h2 class="section-title">
-    Обо <span>мне</span>
+<h2 class="title">
+<span>Обо мне</span>
 </h2>
 
-<p>
-Я создаю современные сайты с упором
-на визуал, скорость и удобство.
-Каждый проект собирается под конкретную
-задачу, а не по одному шаблону.
-</p>
+<div class="about">
+Я создаю современные сайты с акцентом
+на дизайн, скорость и удобство.
+Каждый проект собирается под конкретную задачу.
+</div>
 
 </div>
+
+</section>
+
+
+<!-- ROBOT -->
+
+<section class="robot-area">
+
+<div class="robot-title">
+SMART ASSISTANT / ONLINE
+</div>
+
+<div class="robot-glow"></div>
+
+<div class="platform"></div>
+
+
+<div class="robot">
+
+<!-- HEAD -->
+
+<div class="head" id="robotHead">
+
+<div class="antenna"></div>
+
+<div class="ear left"></div>
+<div class="ear right"></div>
+
+
+<!-- ЛИЦО -->
+
+<div class="face" id="robotFace">
+
+<div class="eye left" id="eyeLeft"></div>
+<div class="eye right" id="eyeRight"></div>
+
+</div>
+
+</div>
+
+
+<div class="neck"></div>
+
+
+<!-- BODY -->
+
+<div class="body">
+
+<div class="chest"></div>
+
+<div class="core"></div>
+
+</div>
+
+
+<!-- LEFT ARM -->
+
+<div class="arm left">
+
+<div class="shoulder"></div>
+<div class="upper"></div>
+<div class="joint"></div>
+
+<div class="hand">
+<span class="finger"></span>
+<span class="finger"></span>
+<span class="finger"></span>
+<span class="finger"></span>
+</div>
+
+</div>
+
+
+<!-- RIGHT ARM -->
+
+<div class="arm right">
+
+<div class="shoulder"></div>
+<div class="upper"></div>
+<div class="joint"></div>
+
+<div class="hand">
+<span class="finger"></span>
+<span class="finger"></span>
+<span class="finger"></span>
+<span class="finger"></span>
+</div>
+
+</div>
+
+
+<div class="leg left"></div>
+<div class="leg right"></div>
+
+</div>
+
+
+<div class="robot-button">
+
+<a
+class="btn"
+target="_blank"
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20заказать%20сайт.">
+Заказать сайт
+</a>
+
+<small>
+робот тянется к кнопке →
+</small>
 
 </div>
 
@@ -1089,19 +1304,18 @@ target="_blank"
 <section class="contact">
 
 <h2>
-Есть идея?
+Готовы начать?
 </h2>
 
 <p>
-Давай превратим её в нормальный сайт.
+Расскажите о своей идее — обсудим проект.
 </p>
 
 <a
-href="https://t.me/pizdezix"
-class="contact-btn"
+class="btn"
 target="_blank"
->
-Telegram
+href="https://t.me/pizdezix?text=Здравствуйте!%20Хочу%20обсудить%20создание%20сайта.">
+Написать в Telegram
 </a>
 
 </section>
@@ -1114,7 +1328,7 @@ Telegram
 </div>
 
 <div>
-Web Design & Development
+Telegram: @pizdezix
 </div>
 
 </footer>
@@ -1122,42 +1336,134 @@ Web Design & Development
 
 <script>
 
-/* ===== СВЕТЛЯЧКИ ===== */
+/* =========================
+   FIRELIGHT PARTICLES
+========================= */
 
-const container =
-document.querySelector(".fireflies");
+const f=document.querySelector(".fireflies");
 
-for (let i = 0; i < 35; i++) {
+for(let i=0;i<35;i++){
 
-    const firefly =
-    document.createElement("span");
+const x=document.createElement("i");
 
-    firefly.className =
-    "firefly";
+x.className="firefly";
 
-    firefly.style.left =
-    Math.random() * 100 + "%";
+x.style.left=Math.random()*100+"%";
+x.style.top=Math.random()*100+"%";
 
-    firefly.style.top =
-    Math.random() * 100 + "%";
+x.style.width=
+x.style.height=
+2+Math.random()*4+"px";
 
-    firefly.style.animationDelay =
-    Math.random() * 6 + "s";
+x.style.animationDelay=
+Math.random()*6+"s";
 
-    firefly.style.animationDuration =
-    3 + Math.random() * 5 + "s";
+f.appendChild(x);
 
-    const size =
-    2 + Math.random() * 4;
-
-    firefly.style.width =
-    size + "px";
-
-    firefly.style.height =
-    size + "px";
-
-    container.appendChild(firefly);
 }
+
+
+/* =========================
+   ROBOT TRACKING
+========================= */
+
+const head=document.getElementById("robotHead");
+const face=document.getElementById("robotFace");
+
+const eyeLeft=document.getElementById("eyeLeft");
+const eyeRight=document.getElementById("eyeRight");
+
+let targetX=0;
+let targetY=0;
+
+let currentX=0;
+let currentY=0;
+
+
+/* MOUSE */
+
+document.addEventListener("mousemove",(e)=>{
+
+const centerX=window.innerWidth/2;
+const centerY=window.innerHeight/2;
+
+targetX=(e.clientX-centerX)/centerX;
+targetY=(e.clientY-centerY)/centerY;
+
+});
+
+
+/* TOUCH */
+
+document.addEventListener("touchmove",(e)=>{
+
+if(!e.touches.length)return;
+
+const centerX=window.innerWidth/2;
+const centerY=window.innerHeight/2;
+
+targetX=(e.touches[0].clientX-centerX)/centerX;
+targetY=(e.touches[0].clientY-centerY)/centerY;
+
+},{passive:true});
+
+
+/* SMOOTH MOVEMENT */
+
+function robotLook(){
+
+currentX+=(targetX-currentX)*0.08;
+currentY+=(targetY-currentY)*0.08;
+
+
+/* HEAD */
+
+const rotateY=currentX*14;
+const rotateX=-currentY*9;
+
+head.style.transform=
+"rotate(-3deg) rotateY("+
+rotateY+
+"deg) rotateX("+
+rotateX+
+"deg)";
+
+
+/* FACE */
+
+face.style.transform=
+"translate("+
+currentX*5+
+"px,"+
+currentY*3+
+"px)";
+
+
+/* EYES */
+
+const eyeX=currentX*8;
+const eyeY=currentY*5;
+
+eyeLeft.style.transform=
+"translate("+
+eyeX+
+"px,"+
+eyeY+
+"px)";
+
+eyeRight.style.transform=
+"translate("+
+eyeX+
+"px,"+
+eyeY+
+"px)";
+
+
+requestAnimationFrame(robotLook);
+
+}
+
+robotLook();
 
 </script>
 
